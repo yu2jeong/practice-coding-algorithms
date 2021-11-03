@@ -7,18 +7,11 @@ public class Bank {
     }
     
     public bool Transfer(int account1, int account2, long money) {
-        if(IsValidAccount(account1) && IsValidAccount(account2))
+        if(IsValidAccount(account1) && IsValidAccount(account2) && IsEnoughMoney(account1, money))
         {
-            if(IsEnoughMoney(account1, money))
-            {
-                balance[account1-1] -= money;
-                balance[account2-1] += money;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            balance[account1-1] -= money;
+            balance[account2-1] += money;
+            return true;
         }
         else
         {
@@ -39,17 +32,10 @@ public class Bank {
     }
     
     public bool Withdraw(int account, long money) {
-        if(IsValidAccount(account))
+        if(IsValidAccount(account) && IsEnoughMoney(account,money))
         {
-            if(IsEnoughMoney(account,money))
-            {
-                balance[account-1] -= money;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            balance[account-1] -= money;
+            return true;
         }
         else
         {
@@ -59,22 +45,11 @@ public class Bank {
     
     private bool IsValidAccount(int account)
     {
-        if(account > 0 && account <= balance.Length )
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (account > 0 && account <= balance.Length) ? true : false;
     }
     
     private bool IsEnoughMoney(int account, long money)
     {
-        if(balance[account-1] < money)
-        {
-            return false;
-        }
-        return true;
+        return (balance[account-1] < money) ? false : true;
     }
 }
