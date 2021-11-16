@@ -23,25 +23,21 @@ public class Solution {
         List<int> criticalList = new List<int>();
         int minDistCritical = Int32.MaxValue;
 
-        head = head.next.next;
-        while(head != null)
+        while(head.next.next != null)
         {
             dist += 1;
             
-            if( IsMinima(preVal, prePreVal ,head.val) || IsMaxima(preVal, prePreVal ,head.val))
+            if( IsMinima(head.next.val, head.val ,head.next.next.val) || IsMaxima(head.next.val, head.val ,head.next.next.val))
            {
                 criticalList.Add(dist);
                 if(criticalList.Count > 1)
                 {
-                     minDistCritical = Math.Min(minDistCritical, dist -           criticalList[criticalList.Count-2]);
+                     minDistCritical = Math.Min(minDistCritical, dist - criticalList[criticalList.Count-2]);
                 }
 
            }
         
-            prePreVal = preVal;
-            preVal = head.val;
-            head = head.next;
-            
+            head = head.next;  
         }
         
 
