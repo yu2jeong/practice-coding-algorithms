@@ -1,12 +1,12 @@
 public class Solution {
     public long CountVowels(string word) {
         long result = 0;
-        
-        for(int i=0; i < word.Length; i++)
+        long wordLength = word.Length;
+        for(int i=0; i < wordLength; i++)
         {
             if(IsVowel(word[i]))
             {
-                result += (word.Length - i) * (i+1);
+                result += (wordLength - i) * (i+1);
             }
         }
         return result;
