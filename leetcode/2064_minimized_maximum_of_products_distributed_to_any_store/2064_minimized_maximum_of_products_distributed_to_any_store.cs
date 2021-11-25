@@ -1,7 +1,9 @@
 public class Solution {
     public int MinimizedMaximum(int n, int[] quantities) {
         
-        int left = 1, right = quantities.Max();
+        int left = 1;
+        int right = quantities.Max();
+        
         while(left < right)
         {
             int mid = (left+right)/2;
